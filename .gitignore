@@ -1,0 +1,6 @@
+logs/
+results/
+.snakemake/
+data/FastQC/
+data/references/
+.vscode/

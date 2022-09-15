@@ -1,11 +1,13 @@
-# TGIRT-Seq pipeline
+# RNA-Seq pipeline to compare RNAs bound to ribosomes containing or not pseudogenes of ribosomal protein 
 
 __Author__ : Etienne Fafard-Couture
 
 __Email__ :  _<etienne.fafard-couture@usherbrooke.ca>_
 
 ## License
-TGIRT-Seq pipeline. Copyright (C) 2021  Étienne Fafard-Couture
+This pipeline was adapted from https://github.com/scottgroup/pan_transcriptomic_pipeline.git.
+
+RPG pseudogene RNA-Seq pipeline. Copyright (C) 2021  Étienne Fafard-Couture
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,7 +36,7 @@ To create the Snakemake environment used to launch Snakemake, run the following.
 ```bash
 exec bash
 conda config --set auto_activate_base False
-conda create --name smake -c bioconda -c conda-forge snakemake=5.4.5
+conda create --name smake -c bioconda -c conda-forge snakemake=6.0.5
 ```
 
 Before running Snakemake, you have to initialize the environment
