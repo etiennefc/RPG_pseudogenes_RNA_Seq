@@ -36,12 +36,12 @@ rule kallisto_quant:
         trimmed_fq_R1 = rules.fastp.output.fastq1,
         trimmed_fq_R2 = rules.fastp.output.fastq2
     output:
-        quant = "results/kallisto/{id}/abundance.tsv"
+        quant = "results/kallisto/{sample_id}/abundance.tsv"
     params:
         bootstrap = "50",
-        outdir = "results/kallisto/{id}"
+        outdir = "results/kallisto/{sample_id}"
     log:
-        "logs/kallisto/{id}.log"
+        "logs/kallisto/{sample_id}.log"
     threads:
         1
     conda:
@@ -76,8 +76,8 @@ rule kallisto_combine_quantification:
     processing.
     """
     input:
-        datasets = expand("results/kallisto/{id}/abundance.tsv",
-                           id=id),
+        datasets = expand("results/kallisto/{sample_id}/abundance.tsv",
+                           sample_id=simple_id),
         map = rules.generate_transcriptID_geneID.output.map
     output:
         tpm = "results/kallisto/tpm.tsv",

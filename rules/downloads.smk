@@ -1,6 +1,3 @@
-import os
-
-
 rule download_genome:
     """Download the reference genome (fasta file) used for this analysis from
         ENSEMBL ftp servers."""

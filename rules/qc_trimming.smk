@@ -3,8 +3,8 @@ rule rename_samples:
     """Rename samples with a nicer understandable name"""
     output:
         renamed_fastq = expand(
-            "data/references/fastq/{id}_R{pair}.fastq.gz",
-            id=simple_id, pair=[1, 2])
+            "data/references/fastq/{sample_id}_R{pair}.fastq.gz",
+            sample_id=simple_id, pair=[1, 2])
     run:
         for new_name, old_name in config['dataset'].items():
             for num in [1, 2]:
@@ -16,17 +16,17 @@ rule rename_samples:
 rule qc_before_trim:
     "Assess fastq quality before trimming reads"
     input:
-        fastq1 = "data/references/fastq/{id}_R1.fastq.gz",
-        fastq2 = "data/references/fastq/{id}_R2.fastq.gz"
+        fastq1 = "data/references/fastq/{sample_id}_R1.fastq.gz",
+        fastq2 = "data/references/fastq/{sample_id}_R2.fastq.gz"
     output:
-        qc_report1 = "data/FastQC/Before_trim/{id}_R1_fastqc.html",
-        qc_report2 = "data/FastQC/Before_trim/{id}_R2_fastqc.html"
+        qc_report1 = "data/FastQC/Before_trim/{sample_id}_R1_fastqc.html",
+        qc_report2 = "data/FastQC/Before_trim/{sample_id}_R2_fastqc.html"
     threads:
         32
     params:
         out_dir = "data/FastQC/Before_trim"
     log:
-        "logs/fastqc/before_trim/{id}.log"
+        "logs/fastqc/before_trim/{sample_id}.log"
     conda:
         "../envs/fastqc.yaml"
     shell:
@@ -41,15 +41,15 @@ rule qc_before_trim:
 rule fastp:
     """ Trim reads from fastq files using fastp."""
     input:
-        fastq1 = rules.rename_samples.output[0],
-        fastq2 = rules.rename_samples.output[1]
+        fastq1 = "data/references/fastq/{sample_id}_R1.fastq.gz",
+        fastq2 = "data/references/fastq/{sample_id}_R2.fastq.gz"
     output:
-        fastq1 = "results/fastp/{id}_R1.fq",
-        fastq2 = "results/fastp/{id}_R2.fq",
-        unpaired_fastq1 = "results/fastp/{id}_R1.unpaired.fq",
-        unpaired_fastq2 = "results/fastp/{id}_R2.unpaired.fq",
-        html_report = "results/fastp/{id}_fastp.html",
-        json_report = "results/fastp/{id}_fastp.json"
+        fastq1 = "results/fastp/{sample_id}_R1.fq",
+        fastq2 = "results/fastp/{sample_id}_R2.fq",
+        unpaired_fastq1 = "results/fastp/{sample_id}_R1.unpaired.fq",
+        unpaired_fastq2 = "results/fastp/{sample_id}_R2.unpaired.fq",
+        html_report = "results/fastp/{sample_id}_fastp.html",
+        json_report = "results/fastp/{sample_id}_fastp.json"
     threads:
         8
     params:
@@ -57,7 +57,7 @@ rule fastp:
                 "--cut_window_size 1", "--cut_mean_quality 30", "--cut_front",
                 "--cut_tail"]
     log:
-        "logs/fastp/{id}.log"
+        "logs/fastp/{sample_id}.log"
     conda:
         "../envs/fastp.yaml"
     shell:
@@ -77,14 +77,14 @@ rule qc_after_trim:
         fastq1 = rules.fastp.output.fastq1,
         fastq2 = rules.fastp.output.fastq2
     output:
-        qc_report1 = "data/FastQC/After_trim/{id}_R1_fastqc.html",
-        qc_report2 = "data/FastQC/After_trim/{id}_R2_fastqc.html"
+        qc_report1 = "data/FastQC/After_trim/{sample_id}_R1_fastqc.html",
+        qc_report2 = "data/FastQC/After_trim/{sample_id}_R2_fastqc.html"
     threads:
         32
     params:
         out_dir = "data/FastQC/After_trim"
     log:
-        "logs/fastqc/after_trim/{id}.log"
+        "logs/fastqc/after_trim/{sample_id}.log"
     conda:
         "../envs/fastqc.yaml"
     shell:

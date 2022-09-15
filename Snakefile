@@ -13,12 +13,12 @@ include: "rules/deseq2.smk"
 
 rule all:
     input:
-        qc_before_trim = expand("data/FastQC/Before_trim/{id}_R1_fastqc.html",
-            id=simple_id),
-        qc_after_trim = expand("data/FastQC/After_trim/{id}_R1_fastqc.html", 
-            id=simple_id),
-        kallisto_quant = expand("results/kallisto/{id}/abundance.tsv", id=simple_id),
-        deseq = "results/DESeq2/genes"
+        qc_before_trim = expand("data/FastQC/Before_trim/{sample_id}_R1_fastqc.html",
+            sample_id=simple_id),
+        qc_after_trim = expand("data/FastQC/After_trim/{sample_id}_R1_fastqc.html", 
+            sample_id=simple_id),
+        #kallisto_quant = expand("results/kallisto/{sample_id}/abundance.tsv", sample_id=simple_id),
+        #deseq = "results/DESeq2/genes"
 
 
 rule all_downloads:
