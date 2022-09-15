@@ -80,10 +80,10 @@ rule kallisto_combine_quantification:
                            sample_id=simple_id),
         map = rules.generate_transcriptID_geneID.output.map
     output:
-        tpm = "results/kallisto/tpm.tsv",
-        est_counts = "results/kallisto/est_counts.tsv",
-        transcript_tpm = "results/kallisto/transcript_tpm.tsv",
-        transcript_est_counts = "results/kallisto/transcript_est_counts.tsv"
+        tpm = "results/kallisto_combined/tpm.tsv",
+        est_counts = "results/kallisto_combined/est_counts.tsv",
+        transcript_tpm = "results/kallisto_combined/transcript_tpm.tsv",
+        transcript_est_counts = "results/kallisto_combined/transcript_est_counts.tsv"
     conda:
         "../envs/python.yaml"
     script:

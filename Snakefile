@@ -6,6 +6,16 @@ configfile: "config.json"
 original_id = list(config['dataset'].values())
 simple_id = list(config['dataset'].keys())
 
+# Get DeSeq comparisons (c1 vs c2, fold change with regards to c1)
+comparisons, comparisons_full = [], []
+with open('data/comparisons.tsv', 'r') as f:
+    for line in f:
+        if 'cdn1' not in line:  # skip header
+            c1, c2 = line.strip('\n').split(' ')  # get the 2 conditions in comparison
+            comparisons.append(f'{c1}-{c2}')
+            comparisons_full.append(f'results/DESeq2/{c1}-{c2}.csv')
+
+
 include: "rules/downloads.smk"
 include: "rules/qc_trimming.smk"
 include: "rules/kallisto.smk"
