@@ -22,9 +22,9 @@ all_samples <- read.table(
 dir.create(snakemake@output[["results"]], showWarnings=FALSE)
 
 # Looping through the conditions. They must match exactly those located in the design.tsv file
-conditions = c("partial_knockout", "MLP1_IP", "wild_type") # We are interested here in the KO vs WT and MLP1_IP vs WT (fold change with regards to WT)
-for (i in 1:2) {
-	for (j in (i+1):3) {
+conditions = c("pseudogene_RPG", "wild_type") # We are interested here in the pseudogene RPG vs WT ribosome-bound RNAs(fold change with regards to WT)
+for (i in 1:1) {
+	for (j in (i+1):2) {
 		cnd1 = conditions[i]
 		cnd2 = conditions[j]
 
