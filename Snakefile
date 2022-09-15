@@ -28,7 +28,7 @@ rule all:
         qc_after_trim = expand("data/FastQC/After_trim/{sample_id}_R1_fastqc.html", 
             sample_id=simple_id),
         kallisto_quant = expand("results/kallisto/{sample_id}/abundance.tsv", sample_id=simple_id),
-        deseq = "results/DESeq2/genes"
+        deseq = "results/DESeq2_tximport/"
 
 
 rule all_downloads:
