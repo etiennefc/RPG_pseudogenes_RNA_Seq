@@ -13,7 +13,7 @@ with open('data/comparisons.tsv', 'r') as f:
         if 'cdn1' not in line:  # skip header
             c1, c2 = line.strip('\n').split(' ')  # get the 2 conditions in comparison
             comparisons.append(f'{c1}-{c2}')
-            comparisons_full.append(f'results/DESeq2/{c1}-{c2}.csv')
+            comparisons_full.append(f'results/DESeq2_tximport/{c1}-{c2}.csv')
 
 
 include: "rules/downloads.smk"
@@ -27,7 +27,7 @@ rule all:
             sample_id=simple_id),
         qc_after_trim = expand("data/FastQC/After_trim/{sample_id}_R1_fastqc.html", 
             sample_id=simple_id),
-        kallisto_quant = expand("results/kallisto/{sample_id}/abundance.tsv", sample_id=simple_id),
+        kallisto_tpm_gene = "results/kallisto_combined/tpm.tsv",
         deseq = "results/DESeq2_tximport/"
 
 
