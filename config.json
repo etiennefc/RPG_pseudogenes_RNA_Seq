@@ -1,12 +1,12 @@
 {
   "dataset":
   {
-    "WT_1": "TESTX_H7YRLADXX_S1_L001",
-    "WT_2": "TESTX_H7YRLADXX_S1_L002",
-    "WT_3": "TESTY_H7YRLADXX_S1_L001",
-    "Pseudo_1": "TESTY_H7YRLADXX_S1_L002",
-    "Pseudo_2": "TESTZ_H7YRLADXX_S1_L001",
-    "Pseudo_3": "TESTZ_H7YRLADXX_S1_L002"
+    "RPS27A_1": "Hela_RP527A_S2",
+    "RPS27A_2": "HeLa_RPS27A-N2_S2",
+    "RPS27A_3": "HeLa_RPS27A-N3_2_S7",
+    "RPS27AP5_1": "Hela_RP527AR5_S3",
+    "RPS27AP5_2": "HeLa_RPS27AP5-N2_S3",
+    "RPS27AP5_3": "HeLa_RPS27AP5-N3_2_S8"
   },
   "path":
   {
