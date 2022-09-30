@@ -6,7 +6,10 @@
     "RPS27A_3": "HeLa_RPS27A-N3_2_S7",
     "RPS27AP5_1": "Hela_RP527AR5_S3",
     "RPS27AP5_2": "HeLa_RPS27AP5-N2_S3",
-    "RPS27AP5_3": "HeLa_RPS27AP5-N3_2_S8"
+    "RPS27AP5_3": "HeLa_RPS27AP5-N3_2_S8",
+    "Control_1": "Hela_Ch1_S1",
+    "Control_2": "HeLa_Control-N2_S1",
+    "Control_3": "HeLa_Control-N3_S4"
   },
   "path":
   {
