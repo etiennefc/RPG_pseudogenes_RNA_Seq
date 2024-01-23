@@ -21,9 +21,11 @@ include: "rules/qc_trimming.smk"
 include: "rules/kallisto.smk"
 include: "rules/deseq2.smk"
 include: "rules/final_formatting_and_figures.smk"
+include: "rules/transcript_UTR_analysis.smk"
 
 rule all:
     input:
+        df = 'results/transcript_analyses.tsv'
         qc_before_trim = expand("data/FastQC/Before_trim/{sample_id}_R1_fastqc.html",
             sample_id=simple_id),
         qc_after_trim = expand("data/FastQC/After_trim/{sample_id}_R1_fastqc.html", 
